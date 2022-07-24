@@ -105,7 +105,7 @@ class SceneLoaderPreparingResourcesState: GKState {
         
         loadSceneOperation.completionBlock = { [unowned self] in
             // Enter the next state on the main queue.
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.sceneLoader.scene = loadSceneOperation.scene
                 
                 let didEnterReadyState = self.stateMachine!.enter(SceneLoaderResourcesReadyState.self)

@@ -940,7 +940,9 @@
 			isa = PBXProject;
 			attributes = {
 				KnownAssetTags = (
+					Blue,
 					FlyingBot,
+					Green,
 					GroundBot,
 					Level1,
 					Level2,
@@ -956,10 +958,12 @@
 					};
 					16A8FC981A7062CC006FC06F = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = HKD2VCZ3TM;
 						LastSwiftMigration = 1010;
 					};
 					3EDA0CD01A89744100506454 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = HKD2VCZ3TM;
 						LastSwiftMigration = 1010;
 					};
 				};
@@ -1540,7 +1544,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HKD2VCZ3TM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BUILD_DIR)",
@@ -1566,7 +1570,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HKD2VCZ3TM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BUILD_DIR)",
@@ -1591,7 +1595,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HKD2VCZ3TM;
 				ENABLE_ON_DEMAND_RESOURCES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BUILD_DIR)",
@@ -1622,7 +1626,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HKD2VCZ3TM;
 				ENABLE_ON_DEMAND_RESOURCES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BUILD_DIR)",

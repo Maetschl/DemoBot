@@ -62,7 +62,7 @@ class HomeEndScene: BaseScene {
         
         // If the first level is not ready, hide the buttons until we are notified.
         if !(levelLoader.stateMachine.currentState is SceneLoaderResourcesReadyState) {
-            proceedButton?.alpha = 0.0
+            proceedButton?.alpha = 0.1
             proceedButton?.isUserInteractionEnabled = false
             
             screenRecorderButton?.alpha = 0.0
