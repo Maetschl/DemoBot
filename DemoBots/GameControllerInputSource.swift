@@ -34,8 +34,10 @@ class GameControllerInputSource: ControlInputSourceType {
     // MARK: Gamepad Registration Methods
     
     private func registerPauseEvent() {
-        gameController.controllerPausedHandler = { [unowned self] _ in
-            self.gameStateDelegate?.controlInputSourceDidTogglePauseState(self)
+        if let menuButton = gameController.extendedGamepad?.buttonMenu {
+            menuButton.pressedChangedHandler = { _, _, _ in
+                self.gameStateDelegate?.controlInputSourceDidTogglePauseState(self)
+            }
         }
     }
     

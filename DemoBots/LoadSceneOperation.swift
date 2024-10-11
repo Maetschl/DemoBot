@@ -9,7 +9,7 @@
 
 import Foundation
 
-class LoadSceneOperation: SceneOperation, ProgressReporting {
+class LoadSceneOperation: SceneOperation, ProgressReporting, @unchecked Sendable {
     // MARK: Properties
     
     /// The metadata for the scene to load.

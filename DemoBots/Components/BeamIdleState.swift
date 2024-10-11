@@ -9,21 +9,6 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene {}
-
-class CombatState: GKState {
-
-    unowned var gameScene: GameScene
-
-    required init(gameScene: GameScene) {
-        self.gameScene = gameScene
-    }
-
-    override func didEnter(from previousState: GKState?) {
-        gameScene.removeChildren(in: ...)
-    }
-}
-
 class BeamIdleState: GKState {
     // MARK: Properties
     

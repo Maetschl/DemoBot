@@ -8,7 +8,7 @@
 
 import GameplayKit
 
-class SceneLoaderPreparingResourcesState: GKState {
+class SceneLoaderPreparingResourcesState: GKState, @unchecked Sendable {
     // MARK: Properties
     
     unowned let sceneLoader: SceneLoader

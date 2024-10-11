@@ -70,37 +70,56 @@ class HomeEndScene: BaseScene {
         }
     }
     
+    @MainActor
     func registerForNotifications() {
         // Only register for notifications if we haven't done so already.
         guard sceneLoaderNotificationObservers.isEmpty else { return }
         
         // Create a closure to pass as a notification handler for when loading completes or fails.
-        let handleSceneLoaderNotification: (Notification) -> () = { [unowned self] notification in
-            let sceneLoader = notification.object as! SceneLoader
+        let handleSceneLoaderNotification: @Sendable (Notification) -> Void = { [weak self] notification in
+            guard let self = self else { return }
+            guard let sceneLoader = notification.object as? SceneLoader else { return }
             
             // Show the proceed button if the `sceneLoader` pertains to a `LevelScene`.
-            if sceneLoader.sceneMetadata.sceneType is LevelScene.Type {
+            guard sceneLoader.sceneMetadata.sceneType is LevelScene.Type else { return }
                 // Allow the proceed and screen to be tapped or clicked.
-                self.proceedButton?.isUserInteractionEnabled = true
-                self.screenRecorderButton?.isUserInteractionEnabled = true
-
-                // Fade in the proceed and screen recorder buttons.
-                self.screenRecorderButton?.run(SKAction.fadeIn(withDuration: 1.0))
-
-                // Clear the initial `proceedButton` focus.
-                self.proceedButton?.isFocused = false
-                self.proceedButton?.run(SKAction.fadeIn(withDuration: 1.0)) {
-                    // Indicate that the `proceedButton` is focused.
-                    self.resetFocus()
-                }
+            Task {
+                await self.updateUIForSceneLoader()
             }
         }
         
         // Register for scene loader notifications.
-        let completeNotification = NotificationCenter.default.addObserver(forName: NSNotification.Name.SceneLoaderDidCompleteNotification, object: nil, queue: OperationQueue.main, using: handleSceneLoaderNotification)
-        let failNotification = NotificationCenter.default.addObserver(forName: NSNotification.Name.SceneLoaderDidFailNotification, object: nil, queue: OperationQueue.main, using: handleSceneLoaderNotification)
+        let completeNotification = NotificationCenter.default.addObserver(
+            forName: NSNotification.Name.SceneLoaderDidCompleteNotification,
+            object: nil,
+            queue: OperationQueue.main,
+            using: handleSceneLoaderNotification
+        )
+        let failNotification = NotificationCenter.default.addObserver(
+            forName: NSNotification.Name.SceneLoaderDidFailNotification,
+            object: nil,
+            queue: OperationQueue.main,
+            using: handleSceneLoaderNotification
+        )
         
         // Keep track of the notifications we are registered to so we can remove them in `deinit`.
         sceneLoaderNotificationObservers += [completeNotification, failNotification]
+    }
+    
+    @MainActor
+    private func updateUIForSceneLoader() {
+        // Update UI elements safely within the main actor context
+        proceedButton?.isUserInteractionEnabled = true
+        screenRecorderButton?.isUserInteractionEnabled = true
+
+        // Fade in the proceed and screen recorder buttons.
+        screenRecorderButton?.run(SKAction.fadeIn(withDuration: 1.0))
+
+        // Clear the initial `proceedButton` focus.
+        proceedButton?.isFocused = false
+        proceedButton?.run(SKAction.fadeIn(withDuration: 1.0)) {
+            // Indicate that the `proceedButton` is focused.
+            self.resetFocus()
+        }
     }
 }

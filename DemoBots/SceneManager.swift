@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-protocol SceneManagerDelegate: class {
+protocol SceneManagerDelegate: AnyObject {
     // Called whenever a scene manager has transitioned to a new scene.
     func sceneManager(_ sceneManager: SceneManager, didTransitionTo scene: SKScene)
 }
@@ -64,7 +64,7 @@ final class SceneManager {
     weak var delegate: SceneManagerDelegate?
     
     /// The scene that is currently being presented.
-    private (set) var currentSceneMetadata: SceneMetadata?
+    private(set) var currentSceneMetadata: SceneMetadata?
     
     /// The scene used to indicate progress when additional content needs to be loaded.
     private var progressScene: ProgressScene?

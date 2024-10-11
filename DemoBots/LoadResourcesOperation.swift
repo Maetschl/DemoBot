@@ -9,7 +9,7 @@
 
 import Foundation
 
-class LoadResourcesOperation: SceneOperation, ProgressReporting {
+class LoadResourcesOperation: SceneOperation, ProgressReporting, @unchecked Sendable {
     // MARK: Properties
     
     /// A class that conforms to the `ResourceLoadableType` protocol.

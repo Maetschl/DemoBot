@@ -9,7 +9,7 @@ A subclass of `NSOperation` that maps the different states of an `NSOperation`
 
 import Foundation
 
-class SceneOperation: Operation {
+class SceneOperation: Operation, @unchecked Sendable {
     // MARK: Types
     
     /**
